@@ -4,7 +4,7 @@ class HomeController
 {
   public function index()
   {
-    echo "Pagina de inicio", PHP_EOL;
+    require_once '../app/views/home/index.phtml';
   }
   public function registro()
   {
