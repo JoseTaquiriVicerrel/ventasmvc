@@ -1,11 +1,10 @@
 <?php
 
-class TestController
+class TestController extends Controller
 {
   public function index()
   {
-    require_once '../app/views/test/index.phtml';
-
+    $this->renderView("test/index");
   }
 
   public function mostrar()
@@ -15,13 +14,17 @@ class TestController
 
   public function saludo(?array $params = null)
   {
-    // if (is_null($params)) {
-    //   echo "No se especifico el nombre";
-    //   return false;
-    // }else{
-    //   echo "Holas {$params[0]}";
-    // }
-    echo isset($params) ? "Holas $params[0] " : "No se especifico el nombre";
+    $nombre = '';
+    if (is_null($params)) {
+      $nombre == isset($_POST['nombre']) ? null : '';
+    }else{
+      $nombre == isset($params[0])? $params[0] : '';
+    }
+    $data = [
+      'nombre'=> $nombre
+    ];
+    $this->renderView('test/saludo');
+    // echo isset($params) ? "Holas $params[0] " : "No se especifico el nombre";
   }
 
   public function suma($params = null)
@@ -31,7 +34,13 @@ class TestController
     $num1 = isset($_POST['num1']) ? $_POST['num1'] : 0 ;
     $num2 = isset($_POST['num2']) ? $_POST['num2'] : 0 ;
     $rpta = $num1 + $num2;
+    $params = [
+      'num1' => $num1,
+      'num2' => $num2,
+      'rpta' => $rpta
+    ];
     //echo "La suma {$num1} + {$num2} = {$rpta}";
-    require_once '../app/views/test/suma.phtml';
+    //require_once '../app/views/test/suma.phtml';
+    $this->renderView("test/suma", $params);
   }
 }

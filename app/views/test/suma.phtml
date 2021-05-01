@@ -15,19 +15,18 @@
     <div class="row">
       <h1>Suma</h1>
       <div class="col-sm-4">
-        <form action="http://ventasmvc.test/test/suma" method="POST">
+        <form action="<?= URL ?>test/suma" method="POST">
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Numero 1</label>
-            <input type="number" name="num1" class="form-control" value="<?= $num1 ?>" step="1" id="" required>
-            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+            <label for="num1" class="form-label">Numero 1</label>
+            <input type="number" name="num1" class="form-control" value="<?= $params['num1'] ?>" step="1" >
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Numero 2</label>
-            <input type="number" class="form-control" value="<?= $num2 ?>" name="num2" id="" step="1" required>
+            <label for="num2" class="form-label">Numero 2</label>
+            <input type="number" name="num2" class="form-control" value="<?= $params['num2'] ?>" step="1" >
           </div>
           <button type="submit" class="btn btn-primary">Calcular</button>
           <div class="mb-3 form-check">
-            <label class="form-check-label" for="exampleCheck1"> <?php echo $rpta == 0 ? '' : $rpta; ?> </label>
+            <label> <?= $params['rpta'] == 0 ? '' : "La suma es:" . $params['rpta']; ?> </label>
           </div>
         </form>
       </div>

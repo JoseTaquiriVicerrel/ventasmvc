@@ -1,13 +1,13 @@
 <?php 
 
-class HomeController
+class HomeController extends Controller
 {
   public function index()
   {
-    require_once '../app/views/home/index.phtml';
+    $this->renderView("Home/index");
   }
   public function registro()
   {
-    echo "Pagina de registro";
+    $this->renderView("Home/registro");
   }
 }
