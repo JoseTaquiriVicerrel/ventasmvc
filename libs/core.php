@@ -1,5 +1,9 @@
 <?php
 
+namespace Libs;
+
+use App\Controllers\HomeController;
+
 class Core
 {
   public function __construct()
@@ -27,7 +31,7 @@ class Core
     if (file_exists($path_controller) && $url[0] != 'public' ) {
       //Creamos la instancia del controlador
       require_once $path_controller;
-      $controller_name = $url[0] . 'Controller';
+      $controller_name = '\\App\\Controllers\\' . $url[0] . 'Controller';
       $controller = new $controller_name();
       //si la cantidad de elementos es mayor o igual a 2 es decir se ha agregado parametros
       $size = count($url);

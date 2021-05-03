@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Controllers;
+
+use Libs\Controller;
+
 class TestController extends Controller
 {
   public function index()

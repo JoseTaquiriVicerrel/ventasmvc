@@ -1,5 +1,6 @@
 <?php
 
+namespace Libs;
 class Controller{
 
   public function renderView(string  $view, $params = null)
