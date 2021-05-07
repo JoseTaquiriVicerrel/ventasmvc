@@ -1,0 +1,20 @@
+{
+  "name": "mvc/ventas",
+  "description": "Software de ventas online",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "JoseTaquiriVicerrel",
+      "email": "vicerrel15@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Libs\\":"libs/",
+      "App\\controllers\\": "app/controllers/"
+    }
+  },
+  "require": {},
+  "require-dev": {}
+}

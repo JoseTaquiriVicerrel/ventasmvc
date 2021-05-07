@@ -1,7 +1,7 @@
 <?php
 
 namespace Libs;
-
+use App\Controllers;
 use App\Controllers\HomeController;
 
 class Core
@@ -57,7 +57,6 @@ class Core
           //Error 404
           echo "No existe la accion especificada {$url[1]}";
         }
-        
       }else{
         //cuando no se especifique la accion 
         //Iniciamos el metodo index
