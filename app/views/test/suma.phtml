@@ -18,15 +18,15 @@
         <form action="<?= URL ?>test/suma" method="POST">
           <div class="mb-3">
             <label for="num1" class="form-label">Numero 1</label>
-            <input type="number" name="num1" class="form-control" value="<?= $params['num1'] ?>" step="1" >
+            <input type="number" name="num1" class="form-control" value="<?= $num1 ?>" step="1" >
           </div>
           <div class="mb-3">
             <label for="num2" class="form-label">Numero 2</label>
-            <input type="number" name="num2" class="form-control" value="<?= $params['num2'] ?>" step="1" >
+            <input type="number" name="num2" class="form-control" value="<?= $num2 ?>" step="1" >
           </div>
           <button type="submit" class="btn btn-primary">Calcular</button>
           <div class="mb-3 form-check">
-            <label> <?= $params['rpta'] == 0 ? '' : "La suma es:" . $params['rpta']; ?> </label>
+            <label> <?= $rpta == 0 ? '' : "La suma es:" . $rpta; ?> </label>
           </div>
         </form>
       </div>

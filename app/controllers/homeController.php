@@ -5,12 +5,12 @@ use Libs\Controller;
 
 class HomeController extends Controller
 {
+  public function __construct() {
+    $this->loadDirectoryTemplate('home');
+  }
+
   public function index()
   {
-    $this->renderView("Home/index");
-  }
-  public function registro()
-  {
-    $this->renderView("Home/registro");
+    echo $this->templates->render('index');
   }
 }

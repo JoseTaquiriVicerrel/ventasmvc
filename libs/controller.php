@@ -2,9 +2,11 @@
 
 namespace Libs;
 class Controller{
+  protected $templates;
 
-  public function renderView(string  $view, $params = null)
+  public function loadDirectoryTemplate(string $directory)
   {
-    require_once "../app/views/{$view}.phtml";
+    $this->templates = new \League\Plates\Engine(MAINPATH . 'app/views/' . $directory);
+    $this->templates->setFileExtension("phtml");
   }
 }
