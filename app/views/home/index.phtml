@@ -1,13 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio</title>
-  <link rel="stylesheet" href="../public/css/test/index.css">
-</head>
-<body>
-  <h1>Pagina Home</h1>
-</body>
-</html>
+<?php $this->layout('../layouts/layout', ['title' => 'ventasMVC']) ?>
+
+<?php $this->start('contenido') ?>
+<div class="container">
+  <h1>Hola mundo</h1>
+</div>
+<!-- Begin Slider With Banner Area -->
+<?php include MAINPATH . 'app/views/layouts/partials/_areaBanner.phtml' ?>
+<!-- Slider With Banner Area End Here -->
+
+<!-- product-area start -->
+<?php include MAINPATH . 'app/views/layouts/partials/_areaProductTabs.phtml' ?>
+<!-- product-area end -->
+<!-- Begin Li's Static Banner Area -->
+<?php include MAINPATH . 'app/views/layouts/partials/_staticBanner.phtml' ?>
+<!-- Li's Static Banner Area End Here -->
+<!-- Begin Li's Laptop Product Area -->
+<?php include MAINPATH . 'app/views/layouts/partials/_areaProduct.phtml' ?>
+<!-- Li's Laptop Product Area End Here -->
+<!-- Begin Li's TV & Audio Product Area -->
+<!-- Li's TV & Audio Product Area End Here -->
+<!-- Begin Li's Static Home Area -->
+<?php include MAINPATH . 'app/views/layouts/partials/_staticHomeArea.phtml' ?>
+
+<!-- Li's Static Home Area End Here -->
+<!-- Begin Group Featured Product Area -->
+
+<?php include MAINPATH . 'app/views/layouts/partials/_featuredProduct.phtml' ?>
+<!-- Group Featured Product Area End Here -->
+
+
+<?php $this->end() ?>
