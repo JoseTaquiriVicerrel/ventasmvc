@@ -14,9 +14,6 @@ class Core
     $url = rtrim($url, '/');
     //separamos y convertimos a array
     $url = explode('/', $url);
-    
-    // var_dump($url);
-    //echo "<pre>", print_r($url), "</pre>";
 
     if (empty($url[0])) {
       //llamamos al controlador por defecto(Home)
