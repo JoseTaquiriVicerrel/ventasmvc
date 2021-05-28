@@ -12,10 +12,12 @@
   "autoload": {
     "psr-4": {
       "Libs\\":"libs/",
-      "App\\controllers\\": "app/controllers/"
+      "App\\controllers\\": "app/controllers/",
+      "App\\Daos\\": "app/daos/"
     },
     "files":[
-      "app/helpers/helper.php"
+      "app/helpers/helper.php",
+      "config/config.php"
     ]
   },
   "require": {
