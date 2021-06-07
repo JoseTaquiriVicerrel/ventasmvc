@@ -1,0 +1,52 @@
+<?php $this->layout('../layouts/layout', ['title' => 'Categoria : detalle']) ?>
+<?php $this->start('contenido') ?>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Categoria Detalle</h1>
+      <form action="<?= URL . 'categoria/save'?>" method="post">
+        <input type="hidden" name="id" value="<?= isset($data) ? $data->ID : '' ?>" />
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="id_nombre">Nombre:</label>
+              <input type="text" class="form-control" name="nombre" id="id_nombre" value="<?= isset($data) ? $data->Nombre : '' ?>">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="id_descripcion">Descripcion</label>
+              <input name="descripcion" id="id_descripcion" cols="30" rows="10" value="<?= isset($data) ? $data->Descripcion : '' ?>"></input>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class=" form-group">
+
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" name="Estado" <?= !$data ? '' : ($data->Estado == 1 ? 'checked' : '') ?>>
+              <label class="form-check-label" for="exampleCheck1">Estado</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <button class="btn btn-primary btn-block">Guardar</button>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <button class="btn btn-danger btn-block">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-12">
+
+    </div>
+  </div>
+</div>
+<?php $this->stop() ?>

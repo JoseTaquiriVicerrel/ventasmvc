@@ -1,4 +1,46 @@
 <?php $this->layout('../layouts/layout', ['title' => 'ventasMVC']) ?>
 <?php $this->start('contenido') ?>
-<?php myEcho($data) ?>
+<div class="container">
+  <h1>Bienvenidos</h1>
+  <div class="row">
+    <div class="col-sm-4">
+      <a href="<?= URL . 'categoria/detail' ?>" class="btn btn-primary btn-block">Nuevo</a>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tbCategoria">
+          <?php foreach ($categorias as $category) : ?>
+            <tr>
+              <td><?= $this->e($category->ID) ?></td>
+              <td><?= $this->e($category->Nombre) ?></td>
+              <td><?= $this->e($category->Descripcion) ?></td>
+              <td>
+                <div class="row">
+                  <a class="btn btn-info" title="Editar" href="<?= URL . "categoria/detail/" . $this->e($category->ID) ?>" title="Modificar">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                  <a class="btn btn-danger" title="Editar" href="<?= URL . "categoria/delete/" . $this->e($category->ID) ?>" title="Eliminar">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                </div>
+
+              </td>
+            </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 <?php $this->stop() ?>

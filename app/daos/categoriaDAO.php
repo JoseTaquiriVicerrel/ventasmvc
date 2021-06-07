@@ -7,11 +7,11 @@ class CategoriaDAO extends Dao
     $this->loadConnection();
   }
 
-  public function GetAll()
+  public function GetAll(bool $estado)
   {
-    $sql = "SELECT ID, Nombre, Descripcion,Estado FROM  Categorias";
-    myEcho( $this->pdo);
+    $sql = "SELECT ID, Nombre, Descripcion,Estado FROM  Categorias where Estado = ? ";
     $stmt = $this->pdo->prepare($sql);
+    $stmt->bindParam(1, $estado,\PDO::PARAM_BOOL);
     $stmt->execute();
     $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
     return $result;
@@ -29,4 +29,35 @@ class CategoriaDAO extends Dao
     }
     return $result;
   }
+
+  public function create($obj)
+  {
+      $sql = "INSERT INTO Categorias ( Nombre, Descripcion,Estado) values (?,?,?)";
+      $stmt = $this->pdo->prepare($sql);
+      $stmt->bindParam(1, $obj->Nombre, \PDO::PARAM_STR);
+      $stmt->bindParam(2, $obj->Descripcion, \PDO::PARAM_STR);
+      $stmt->bindParam(3, $obj->Estado, \PDO::PARAM_BOOL);
+      
+    return $stmt->execute();
+  }
+  public function update($obj)
+  {
+    $sql = "UPDATE Categorias SET  Nombre = ? , Descripcion = ? , Estado = ? WHERE ID = ?";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindParam(1, $obj->Nombre, \PDO::PARAM_STR);
+    $stmt->bindParam(2, $obj->Descripcion, \PDO::PARAM_STR);
+    $stmt->bindParam(3, $obj->Estado, \PDO::PARAM_BOOL);
+    $stmt->bindParam(4, $obj->ID, \PDO::PARAM_INT);
+    return $stmt->execute();
+  }
+
+  public function delete(int $id)
+  {
+    $sql = "DELETE FROM  Categorias  WHERE ID = :id";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+    return $stmt->execute();
+  }
+
+
 }
