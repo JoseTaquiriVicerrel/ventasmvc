@@ -9,7 +9,7 @@ class CategoriaDAO extends Dao
 
   public function GetAll(bool $estado)
   {
-    $sql = "SELECT ID, Nombre, Descripcion,Estado FROM  Categorias where Estado = ? ";
+    $sql = "SELECT IdCateg, Nombre, Descripcion,Estado FROM  Categorias where Estado = ? ";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindParam(1, $estado,\PDO::PARAM_BOOL);
     $stmt->execute();
