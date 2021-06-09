@@ -9,7 +9,7 @@ class CategoriaDAO extends Dao
 
   public function GetAll(bool $estado)
   {
-    $sql = "SELECT ID, Nombre, Descripcion,Estado FROM  Categorias where Estado = ? ";
+    $sql = "SELECT IdCateg, Nombre, Descripcion,Estado FROM  Categorias where Estado = ? ";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindParam(1, $estado,\PDO::PARAM_BOOL);
     $stmt->execute();
@@ -42,7 +42,7 @@ class CategoriaDAO extends Dao
   }
   public function update($obj)
   {
-    $sql = "UPDATE Categorias SET  Nombre = ? , Descripcion = ? , Estado = ? WHERE ID = ?";
+    $sql = "UPDATE Categorias SET  Nombre = ? , Descripcion = ? , Estado = ? WHERE IdCateg = ?";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindParam(1, $obj->Nombre, \PDO::PARAM_STR);
     $stmt->bindParam(2, $obj->Descripcion, \PDO::PARAM_STR);
@@ -53,9 +53,9 @@ class CategoriaDAO extends Dao
 
   public function delete(int $id)
   {
-    $sql = "DELETE FROM  Categorias  WHERE ID = :id";
+    $sql = "DELETE FROM  Categorias  WHERE IdCateg = ?";
     $stmt = $this->pdo->prepare($sql);
-    $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+    $stmt->bindParam( 1, $id, \PDO::PARAM_INT);
     return $stmt->execute();
   }
 
