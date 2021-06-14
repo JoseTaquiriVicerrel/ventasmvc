@@ -3,15 +3,15 @@
 namespace App\Controllers;
 
 use Libs\Controller;
-use App\Daos\UnidadesDAO;
+use App\Daos\FormaPagoDAO;
 use stdClass;
 
-class UnidadController extends Controller
+class FormaPagoController extends Controller
 {
   public function __construct()
   {
-    $this->loadDirectoryTemplate('unidad');
-    $this->loadDAO('unidadesDAO');
+    $this->loadDirectoryTemplate('formapago');
+    $this->loadDAO('formapagoDAO');
   }
 
   public function index()

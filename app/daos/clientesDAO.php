@@ -13,7 +13,7 @@ class ClientesDAO extends Dao
 
     public function GetAll()
     {
-        $sql = "SELECT IdCliente, Nombre, Apellido, Direccion, Telf, CreditoLim, Ruc FROM  Clientes";
+        $sql = "SELECT IdCliente, Nombres, Apellidos, Direccion, Telf, CreditoLimite, Ruc FROM  Clientes";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
@@ -24,7 +24,7 @@ class ClientesDAO extends Dao
     {
         $result = null;
         if ($id > 0) {
-            $sql = "SELECT ID, Nombre, Apellido, Direccion, Telf, CreditoLim, Ruc FROM Clientes where ID = ?";
+            $sql = "SELECT ID, Nombres, Apellidos, Direccion, Telf, CreditoLimite, Ruc FROM Clientes where ID = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindParam(1, $id, \PDO::PARAM_INT);
             $stmt->execute();
@@ -35,26 +35,26 @@ class ClientesDAO extends Dao
 
     public function create($obj)
     {
-        $sql = "INSERT INTO Clientes ( Nombre, Apellido, Direccion, Telf, CreditoLim, Ruc) values (?,?,?,?,?,?)";
+        $sql = "INSERT INTO Clientes ( Nombres, Apellidos, Direccion, Telf, CreditoLimite, Ruc) values (?,?,?,?,?,?)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(1, $obj->Nombre, \PDO::PARAM_STR);
-        $stmt->bindParam(2, $obj->Apellido, \PDO::PARAM_STR);
+        $stmt->bindParam(1, $obj->Nombres, \PDO::PARAM_STR);
+        $stmt->bindParam(2, $obj->Apellidos, \PDO::PARAM_STR);
         $stmt->bindParam(3, $obj->Direccion, \PDO::PARAM_STR);
         $stmt->bindParam(4, $obj->Telf, \PDO::PARAM_STR);
-        $stmt->bindParam(5, $obj->CreditoLim, \PDO::PARAM_STR);
+        $stmt->bindParam(5, $obj->CreditoLimite, \PDO::PARAM_STR);
         $stmt->bindParam(6, $obj->Ruc, \PDO::PARAM_STR);
 
         return $stmt->execute();
     }
     public function update($obj)
     {
-        $sql = "UPDATE Clientes SET  Nombre = ? , Descripcion = ? , Apellido= ?, Direccion= ?, Telf= ?, CreditoLim= ?, Ruc = ? WHERE ID = ?";
+        $sql = "UPDATE Clientes SET  Nombres = ? , Apellidos= ?, Direccion= ?, Telf= ?, CreditoLimite= ?, Ruc = ? WHERE ID = ?";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(1, $obj->Nombre, \PDO::PARAM_STR);
-        $stmt->bindParam(2, $obj->Apellido, \PDO::PARAM_STR);
+        $stmt->bindParam(1, $obj->Nombres, \PDO::PARAM_STR);
+        $stmt->bindParam(2, $obj->Apellidos, \PDO::PARAM_STR);
         $stmt->bindParam(3, $obj->Direccion, \PDO::PARAM_STR);
         $stmt->bindParam(4, $obj->Telf, \PDO::PARAM_STR);
-        $stmt->bindParam(5, $obj->CreditoLim, \PDO::PARAM_STR);
+        $stmt->bindParam(5, $obj->CreditoLimite, \PDO::PARAM_STR);
         $stmt->bindParam(6, $obj->Ruc, \PDO::PARAM_STR);
         $stmt->bindParam(7, $obj->ID, \PDO::PARAM_INT);
         return $stmt->execute();

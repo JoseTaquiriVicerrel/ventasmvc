@@ -52,7 +52,7 @@ class ComprobantesDAO extends Dao
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM  Comprobantes  WHERE ID = :id";
+        $sql = "DELETE FROM  Comprobantes  WHERE IdComprobante = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
         return $stmt->execute();

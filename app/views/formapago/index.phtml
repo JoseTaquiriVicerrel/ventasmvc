@@ -1,16 +1,10 @@
-<?php $this->layout('../layouts/layout', ['title' => 'ventasMVC']) ?>
+<?php $this->layout('../layouts/layout', ['title' => 'Formas de pago']) ?>
 <?php $this->start('contenido') ?>
 <div class="container">
-  <h1>Categorias</h1>
+  <h1>Formas de pago</h1>
   <div class="row">
     <div class="col-sm-4">
-      <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal">Nuevo</a>
-    </div>
-    <div class="form-group">
-      <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-        <input type="checkbox" class="custom-control-input" name='Estado' id="chkEstado" checked>
-        <label class="custom-control-label estado" for="chkEstado" style="cursor: pointer;">Estado</label>
-      </div>
+      <a class="btn btn-primary btn-block" id="btnAgregar" data-toggle="modal" data-target="#exampleModal">Nuevo</a>
     </div>
   </div>
   <br>
@@ -21,26 +15,21 @@
           <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Descripcion</th>
             <th></th>
           </tr>
         </thead>
         <tbody id="tbCategoria">
-          <?php foreach ($data as $category) : ?>
+          <?php foreach ($data as $item) : ?>
             <tr>
-              <td><?= $this->e($category->IdCateg) ?></td>
-              <td><?= $this->e($category->Nombre) ?></td>
-              <td><?= $this->e($category->Descripcion) ?></td>
+              <td><?= $this->e($item->IdFormaPago) ?></td>
+              <td><?= $this->e($item->Nombre) ?></td>
               <td>
-
-                <a class="btn btn-info" title="Editar" title="Modificar" data-toggle="modal" data-target="#exampleModal">
+                <a class="btn btn-info" title="Editar" data-toggle="modal" data-target="#exampleModal">
                   <i class="fa fa-pencil"></i>
                 </a>
-                <a class="btn btn-danger" data-id="<?= $this->e($category->IdCateg) ?>" title="Editar" href="<?= URL . "categoria/delete/" . $this->e($category->ID) ?>" title="Eliminar">
+                <a class="btn btn-danger" data-id="<?= $this->e($item->IdFormaPago) ?>" data-name="<?= $this->e($item->Nombre) ?>" title="Eliminar">
                   <i class="fa fa-trash"></i>
                 </a>
-
-
               </td>
             </tr>
           <?php endforeach ?>
@@ -52,7 +41,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agregar Categoria</h5>
+          <h5 class="modal-title" id="exampleModalLabel"><span id="operacion"></span> forma de pago </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -67,18 +56,6 @@
                   <div class="form-group">
                     <label for="id_nombre">Nombre:</label>
                     <input type="text" class="form-control" name="nombre" id="nombre" required value="">
-                  </div>
-                </div>
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="id_descripcion">Descripcion</label>
-                    <input name="descripcion" id="descripcion" cols="30" rows="10" required value=""></input>
-                  </div>
-                </div>
-                <div class="col-sm-12">
-                  <div class=" form-group">
-                    <input type="checkbox" class="form-check-input" id="chkEstadoOption" name="Estado">
-                    <label class="form-check-label" for="exampleCheck1">Estado</label>
                   </div>
                 </div>
               </div>
@@ -106,6 +83,6 @@
 <?php $this->stop() ?>
 
 <?php $this->push('scripts'); ?>
-<script src="<?= URL . 'js/categoria/index.js' ?>"></script>
+<script src="<?= URL . 'js/formapago/index.js' ?>"></script>
 
 <?php $this->end(); ?>

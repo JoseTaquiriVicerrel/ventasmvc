@@ -54,9 +54,9 @@ class MarcasDAO extends Dao
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM  Marcas  WHERE ID = :id";
+        $sql = "DELETE FROM  Marcas  WHERE IdMarca = ?";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $stmt->bindParam( 1 , $id, \PDO::PARAM_INT);
         return $stmt->execute();
     }
 }

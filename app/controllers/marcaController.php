@@ -3,15 +3,15 @@
 namespace App\Controllers;
 
 use Libs\Controller;
-use App\Daos\UnidadesDAO;
+use App\Daos\MarcasDAO;
 use stdClass;
 
-class UnidadController extends Controller
+class MarcaController extends Controller
 {
   public function __construct()
   {
-    $this->loadDirectoryTemplate('unidad');
-    $this->loadDAO('unidadesDAO');
+    $this->loadDirectoryTemplate('marca');
+    $this->loadDAO('marcasDAO');
   }
 
   public function index()
@@ -47,6 +47,7 @@ class UnidadController extends Controller
 
     $obj->ID = isset($_POST['id']) ? $_POST['id'] : 0;
     $obj->Nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
+    $obj->Descripcion = isset($_POST['decripcion']) ? $_POST['decripcion'] : '';
 
     if ($obj->ID > 0) {
       $this->dao->update($obj);

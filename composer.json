@@ -13,7 +13,8 @@
     "psr-4": {
       "Libs\\":"libs/",
       "App\\Controllers\\": "app/controllers/",
-      "App\\Daos\\": "app/daos/"
+      "App\\Daos\\": "app/daos/",
+      "App\\Models\\": "app/models/"
     },
     "files":[
       "app/helpers/helper.php",
@@ -22,6 +23,8 @@
   },
   "require": {
     "league/plates": "^3.4",
-    "vlucas/phpdotenv": "^5.3"
+    "vlucas/phpdotenv": "^5.3",
+    "illuminate/database": "^8.46",
+    "phpunit/phpunit": "^9.5"
   }
 }

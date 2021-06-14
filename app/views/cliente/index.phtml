@@ -1,0 +1,122 @@
+<?php $this->layout('../layouts/layout', ['title' => 'Clientes']) ?>
+<?php $this->start('contenido') ?>
+<div class="container">
+  <h1>Clientes</h1>
+  <div class="row">
+    <div class="col-sm-4">
+      <a class="btn btn-primary btn-block" id="btnAgregar" data-toggle="modal" data-target="#exampleModal">Nuevo</a>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Direccion</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tbCategoria">
+          <?php foreach ($data as $item) : ?>
+            <tr>
+              <td><?= $this->e($item->IdCliente) ?></td>
+              <td><?= $this->e($item->Nombres) ?></td>
+              <td><?= $this->e($item->Apellidos) ?></td>
+              <td><?= $this->e($item->Direccion) ?></td>
+              <td>
+                <a class="btn btn-info" title="Editar" data-toggle="modal" data-target="#exampleModal">
+                  <i class="fa fa-pencil"></i>
+                </a>
+                <a class="btn btn-danger" data-id="<?= $this->e($item->Idcliente) ?>" data-name="<?= $this->e($item->Nombres) . " " . $this->e($item->Apellidos) ?>" title="Eliminar">
+                  <i class="fa fa-trash"></i>
+                </a>
+              </td>
+            </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><span id="operacion"></span> cliente </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+
+            <form action="" id="form" method="post">
+              <input type="hidden" name="id" id="ID" value="0" />
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="id_nombre">Nombres:</label>
+                    <input type="text" class="form-control" name="nombres" id="nombre" required value="">
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="id_nombre">Apellidos:</label>
+                    <input type="text" class="form-control" name="apellidos" id="apellidos" required value="">
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="id_nombre">Direccion:</label>
+                    <input type="text" class="form-control" name="direccion" id="direccion" required value="">
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="id_nombre">Telefono:</label>
+                    <input type="text" class="form-control" name="telefono" id="telefono" required value="">
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="id_nombre">Limite de credito:</label>
+                    <input type="number" class="form-control" name="limitcredito" id="limitcredito" required value="" step="any">
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="id_nombre">RUC:</label>
+                    <input type="text" class="form-control" name="ruc" id="ruc" required value="">
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Guardar</button>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <button class="btn btn-danger btn-block" id="mCerrar" data-dismiss="modal">Cancelar</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<?php $this->stop() ?>
+
+<?php $this->push('scripts'); ?>
+<script src="<?= URL . 'js/cliente/index.js' ?>"></script>
+
+<?php $this->end(); ?>

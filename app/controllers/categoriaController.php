@@ -5,6 +5,8 @@ use Libs\Controller;
 use App\Daos\CategoriaDAO;
 use stdClass;
 
+use App\Models\CategoriaModel;
+
 class CategoriaController extends Controller
 {
   public function __construct() {
@@ -22,10 +24,10 @@ class CategoriaController extends Controller
         break;
       case 'GET':
       default:
-        $data = $this->dao->getAll(true);
+        $data = $this->dao->getall(true);
         echo $this->templates->render('index',
         [
-          'categorias' => $data
+          'data' => $data
           ]);
           break;
     }
@@ -39,29 +41,20 @@ class CategoriaController extends Controller
 
   public function save()
   {
-    $obj = new  stdClass();
+    $obj = [
+      'IdCateg' => isset($_POST['id']) ?$_POST['id'] : 0,
+      'Nombre' => isset($_POST['nombre']) ? $_POST['nombre'] : '',
+      'Descripcion' => isset($_POST['descripcion']) ? $_POST['descripcion'] : '',
+      'Estado' => $_POST['Estado'] === "on" ? true : false
+    ];
 
-    $obj->ID = isset($_POST['id']) ?$_POST['id'] : 0;
-    $obj->Nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
-    $obj->Descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : '';
-    
-    if(isset($_POST['Estado'])){
-      if ($_POST['Estado']== 'on') {
-        $obj->Estado = true;
-      }else{
-        $obj->Estado = false;
-      }
-    }else{
-      $obj->Estado = false;
-    }
-
-    if ($obj->ID>0) {
+    if ($obj['IdCateg']>0) {
       $this->dao->update($obj);
+      echo json_encode($_POST);
     }else{
       $this->dao->create($obj);
+      echo json_encode($obj);
     }
-    // header('Location:'. URL . 'categoria');
-    echo json_encode($_POST);
   }
 
   public function delete()
@@ -71,7 +64,6 @@ class CategoriaController extends Controller
       $this->dao->delete($id);
     }
     echo json_encode($_POST);
-    //header('Location:' . URL . 'categoria');
   }
 
 }

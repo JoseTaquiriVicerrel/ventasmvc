@@ -13,7 +13,7 @@ class UnidadesDAO extends Dao
 
     public function GetAll()
     {
-        $sql = "SELECT IdUnidad, Nombre FROM  Unidades";
+        $sql = "SELECT IdUnidad, Nombre FROM Unidades";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
@@ -52,9 +52,9 @@ class UnidadesDAO extends Dao
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM  Unidad  WHERE ID = :id";
+        $sql = "DELETE FROM  Unidades  WHERE IdUnidad = ?";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $stmt->bindParam(1, $id, \PDO::PARAM_INT);
         return $stmt->execute();
     }
 }

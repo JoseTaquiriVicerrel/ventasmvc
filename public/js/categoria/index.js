@@ -53,7 +53,6 @@ function peticionEstado() {
   var url = URLWEB + 'categoria';
   var formData = new FormData();
   formData.append('Estado', chkEstado.checked);
-  console.log(chkEstado.checked)
   tabla.innerHTML = '';
   fetch(url, {
     method: 'POST', // or 'PUT'
@@ -81,7 +80,7 @@ function peticionEliminar(id) {
   })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      peticionEstado();
     })
     .catch(err => console.log(err))
 }
@@ -151,11 +150,9 @@ function itemCategoria(element) {
             <td>${element.Descripcion}</td>
           <td>
           ${estado == true ? `<a class="btn btn-info" title="Editar" data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-pencil"></i></a>` : ''}
-          <button class="btn btn-${estado == true ? 'danger' : 'success'}" data-id="${element.ID}"
-               title="Dar de ${estado == true ? 'baja' : 'alta'}" onclick="dialogo${estado == true ? 'Baja' : 'Alta'}(this)" >
-                <i class="fa fa-arrow-${estado == true ? 'down' : 'up'}"></i>
-          </button>
-          </td>
+          ${estado == false ? `<a class="btn btn-success" title="Dara Alta" ><i class="fa fa-arrow-up"></i></a>` : ''}
+          <a class="btn btn-danger" data-id="${element.IdCateg}" title="Editar" href="" title="Eliminar"><i class="fa fa-trash"></i></a>
+          </td >
       </tr>`;
   return item;
 }
@@ -176,9 +173,8 @@ function save() {
   })
     .then(response => response.json())
     .then(data => {
-      // peticionEstado();
+      peticionEstado();
       btnCerrar.click();
-      console.log(data)
     })
     .catch(err => console.log(err))
 }

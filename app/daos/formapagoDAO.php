@@ -13,7 +13,7 @@ class FormaPagoDAO extends Dao
 
     public function GetAll()
     {
-        $sql = "SELECT IdFormaPago, Nombre FROM  FormaPago";
+        $sql = "SELECT IdFormaPago, Nombre FROM  formapago";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
@@ -24,7 +24,7 @@ class FormaPagoDAO extends Dao
     {
         $result = null;
         if ($id > 0) {
-            $sql = "SELECT ID, Nombre FROM FormaPago where ID = ?";
+            $sql = "SELECT IdFormaPago, Nombre FROM formapago where IdFormaPago = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindParam(1, $id, \PDO::PARAM_INT);
             $stmt->execute();
@@ -35,7 +35,7 @@ class FormaPagoDAO extends Dao
 
     public function create($obj)
     {
-        $sql = "INSERT INTO FormaPago ( Nombre) values (?)";
+        $sql = "INSERT INTO formapago ( Nombre) values (?)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(1, $obj->Nombre, \PDO::PARAM_STR);
 
@@ -43,7 +43,7 @@ class FormaPagoDAO extends Dao
     }
     public function update($obj)
     {
-        $sql = "UPDATE FormaPago SET  Nombre = ? WHERE ID = ?";
+        $sql = "UPDATE formapago SET  Nombre = ? WHERE IdFormaPago = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(1, $obj->Nombre, \PDO::PARAM_STR);
         $stmt->bindParam(2, $obj->ID, \PDO::PARAM_INT);
@@ -52,9 +52,9 @@ class FormaPagoDAO extends Dao
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM  FormaPago  WHERE ID = :id";
+        $sql = "DELETE FROM  formapago  WHERE IdFormaPago = ? ";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $stmt->bindParam( 1 , $id, \PDO::PARAM_INT);
         return $stmt->execute();
     }
 }

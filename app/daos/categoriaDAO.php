@@ -1,19 +1,17 @@
 <?php
 namespace App\Daos;
+
+use App\Models\CategoriaModel;
 use Libs\Dao;
 class CategoriaDAO extends Dao
 {
   public function __construct() {
-    $this->loadConnection();
+    $this->loadEloquent();
   }
 
   public function GetAll(bool $estado)
   {
-    $sql = "SELECT IdCateg, Nombre, Descripcion,Estado FROM  Categorias where Estado = ? ";
-    $stmt = $this->pdo->prepare($sql);
-    $stmt->bindParam(1, $estado,\PDO::PARAM_BOOL);
-    $stmt->execute();
-    $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
+    $result = CategoriaModel::where('Estado',$estado)->orderBy('IdCateg','DESC')->get();
     return $result;
   }
 
@@ -21,24 +19,15 @@ class CategoriaDAO extends Dao
   {
     $result = null;
     if ($id>0) {
-      $sql = "SELECT ID, Nombre, Descripcion,Estado FROM Categorias where ID = ?";
-      $stmt = $this->pdo->prepare($sql);
-      $stmt->bindParam(1, $id,\PDO::PARAM_INT);
-      $stmt->execute();
-      $result = $stmt->fetch(\PDO::FETCH_OBJ);
+      $result = CategoriaModel::find($id);
     }
     return $result;
   }
 
   public function create($obj)
   {
-      $sql = "INSERT INTO Categorias ( Nombre, Descripcion,Estado) values (?,?,?)";
-      $stmt = $this->pdo->prepare($sql);
-      $stmt->bindParam(1, $obj->Nombre, \PDO::PARAM_STR);
-      $stmt->bindParam(2, $obj->Descripcion, \PDO::PARAM_STR);
-      $stmt->bindParam(3, $obj->Estado, \PDO::PARAM_BOOL);
-      
-    return $stmt->execute();
+    $rpta = CategoriaModel::create($obj);
+    return $rpta;
   }
   public function update($obj)
   {

@@ -3,15 +3,15 @@
 namespace App\Controllers;
 
 use Libs\Controller;
-use App\Daos\UnidadesDAO;
+use App\Daos\ClientesDAO;
 use stdClass;
 
-class UnidadController extends Controller
+class ClienteController extends Controller
 {
   public function __construct()
   {
-    $this->loadDirectoryTemplate('unidad');
-    $this->loadDAO('unidadesDAO');
+    $this->loadDirectoryTemplate('cliente');
+    $this->loadDAO('clientesDAO');
   }
 
   public function index()
@@ -46,7 +46,12 @@ class UnidadController extends Controller
     $obj = new  stdClass();
 
     $obj->ID = isset($_POST['id']) ? $_POST['id'] : 0;
-    $obj->Nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
+    $obj->Nombres = isset($_POST['nombres']) ? $_POST['nombres'] : '';
+    $obj->Apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : '';
+    $obj->Direccion = isset($_POST['direccion']) ? $_POST['direccion'] : '';
+    $obj->Telf = isset($_POST['telefono']) ? $_POST['telefono'] : '';
+    $obj->CreditoLimite = isset($_POST['limitcredito']) ? $_POST['limitcredito'] : '';
+    $obj->Ruc = isset($_POST['ruc']) ? $_POST['ruc'] : '';
 
     if ($obj->ID > 0) {
       $this->dao->update($obj);
