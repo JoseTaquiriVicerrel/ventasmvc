@@ -63,6 +63,7 @@
     <?php include MAINPATH . 'app/views/layouts/partials/_modalWrapper.phtml' ?>
     <!-- Quick View | Modal Area End Here -->
   </div>
+  <?= $this->section('Modal') ?>
   <!-- Body Wrapper End Here -->
   <!-- jQuery-V1.12.4 -->
   <script src="<?= URL . "js/vendor/jquery-1.12.4.min.js" ?> "></script>
@@ -107,7 +108,7 @@
   <!-- Main/Activator js -->
   <script src="<?= URL . "js/main.js" ?> "></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <?= $this->section('scripts'); ?>
+<?= $this->section('scripts'); ?>
 
 </body>
 

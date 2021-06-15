@@ -4,7 +4,7 @@
   <h1>Categorias</h1>
   <div class="row">
     <div class="col-sm-4">
-      <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal">Nuevo</a>
+      <a class="btn btn-primary btn-block" is-modal="true" href="<?= URL . 'categoria/detail' ?>" data-toggle="modal" >Nuevo</a>
     </div>
     <div class="form-group">
       <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
@@ -32,15 +32,12 @@
               <td><?= $this->e($category->Nombre) ?></td>
               <td><?= $this->e($category->Descripcion) ?></td>
               <td>
-
-                <a class="btn btn-info" title="Editar" title="Modificar" data-toggle="modal" data-target="#exampleModal">
+                <a class="btn btn-info" title="Editar" is-modal="true" title="Modificar" data-toggle="modal" data-target="#exampleModal">
                   <i class="fa fa-pencil"></i>
                 </a>
                 <a class="btn btn-danger" data-id="<?= $this->e($category->IdCateg) ?>" title="Editar" href="<?= URL . "categoria/delete/" . $this->e($category->ID) ?>" title="Eliminar">
                   <i class="fa fa-trash"></i>
                 </a>
-
-
               </td>
             </tr>
           <?php endforeach ?>
@@ -105,7 +102,17 @@
 </div>
 <?php $this->stop() ?>
 
+<?php $this->start('Modal') ?>
+
+<?php
+$title = "Categoria";
+$size = MEDIANO;
+include MAINPATH . "app/views/layouts/partials/_modalGenerico.phtml";
+?>
+<?php $this->stop() ?>
+
 <?php $this->push('scripts'); ?>
 <script src="<?= URL . 'js/categoria/index.js' ?>"></script>
+<script src="<?= URL . 'js/categoria/modalCrud.js' ?>"></script>
 
 <?php $this->end(); ?>
