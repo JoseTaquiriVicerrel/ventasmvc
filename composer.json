@@ -25,6 +25,7 @@
     "league/plates": "^3.4",
     "vlucas/phpdotenv": "^5.3",
     "illuminate/database": "^8.46",
-    "phpunit/phpunit": "^9.5"
+    "phpunit/phpunit": "^9.5",
+    "wixel/gump": "^1.12"
   }
 }
